@@ -124,7 +124,7 @@ Style: ${stylePrompts[style as keyof typeof stylePrompts]}
       svgText = `
         <text x="50%" y="15%" font-size="65" font-weight="900" fill="white"
           stroke="black" stroke-width="5" text-anchor="middle"
-          font-family="Arial, sans-serif">
+          font-family="sans-serif">
           <tspan x="50%" dy="1em">${line1}</tspan>
           <tspan x="50%" dy="1.2em">${line2}</tspan>
         </text>
@@ -133,7 +133,7 @@ Style: ${stylePrompts[style as keyof typeof stylePrompts]}
       svgText = `
         <text x="50%" y="85%" font-size="${fontSize}" font-weight="900" fill="white"
           stroke="black" stroke-width="${strokeWidth}" text-anchor="middle"
-          font-family="Arial, sans-serif">
+          font-family="sans-serif">
           ${title}
         </text>
       `;
@@ -171,14 +171,13 @@ Style: ${stylePrompts[style as keyof typeof stylePrompts]}
     thumbnail.isGenerating = false;
     await thumbnail.save();
 
+    // remove image file from disk
+    fs.unlinkSync(filepath);
+
     res.json({
       message: "Thumbnail generated successfully",
       thumbnail,
     });
-    
-     // remove image file from disk
-    fs.unlinkSync(filepath);
-
   } catch (error: any) {
     console.log("ERROR:", error.message);
     res.status(500).json({ message: error.message });
