@@ -153,28 +153,18 @@ Style: ${stylePrompts[style as keyof typeof stylePrompts]}
       ])
       .toBuffer();
 
-    //  Save locally
-    const filename = `thumbnail-${Date.now()}.png`;
-    const filepath = path.join("images", filename);
-
-    // create the images directory if it doesn't exist
-    fs.mkdirSync("images", { recursive: true });
-
-    // write the final image to the file
-    fs.writeFileSync(filepath, finalBuffer);
-
-    const uploadResult = await cloudinary.uploader.upload(filepath, {
-      resource_type: "image",
-    });
+    const uploadResult = await cloudinary.uploader.upload(
+      `data:image/png;base64,${finalBuffer.toString("base64")}`,
+      {
+        resource_type: "image",
+      },
+    );
 
     thumbnail.image_url = uploadResult.url;
     thumbnail.isGenerating = false;
     await thumbnail.save();
 
-    // remove image file from disk
-    fs.unlinkSync(filepath);
-
-    res.json({
+    return res.json({
       message: "Thumbnail generated successfully",
       thumbnail,
     });
