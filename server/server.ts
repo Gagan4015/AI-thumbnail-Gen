@@ -36,11 +36,12 @@ app.use(
     secret: process.env.SESSION_SECRET as string,
     resave: false,
     saveUninitialized: false,
+    proxy: true,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 7, // Exp in 7 days
+      maxAge: 1000 * 60 * 60 * 24 * 7,
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      secure: true,
+      sameSite: "none",
       path: "/",
     },
     store: MongoStore.create({
