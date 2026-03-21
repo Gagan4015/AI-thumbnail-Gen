@@ -144,9 +144,19 @@ Style: ${stylePrompts[style as keyof typeof stylePrompts]}
       .resize(width, height)
       .composite([
         {
-          input: Buffer.from(
-            `<svg width="${width}" height="${height}">${svgText}</svg>`,
-          ),
+          input: Buffer.from(`
+  <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+    <style>
+      text {
+        fill: white;
+        font-weight: 900;
+        font-family: sans-serif;
+        stroke: black;
+      }
+    </style>
+    ${svgText}
+  </svg>
+`),
           top: 0,
           left: 0,
         },
