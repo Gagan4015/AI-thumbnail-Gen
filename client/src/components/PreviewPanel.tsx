@@ -20,10 +20,8 @@ export default function PreviewPanel({
     if (!thumbnail?.image_url) return;
 
     const link = document.createElement("a");
-    link.href = thumbnail?.image_url.replace(
-      "/upload",
-      "/upload/fl_attachment",
-    );
+    link.href = thumbnail?.image_url;
+    link.target = "_blank";
 
     document.body.appendChild(link);
     link.click();
