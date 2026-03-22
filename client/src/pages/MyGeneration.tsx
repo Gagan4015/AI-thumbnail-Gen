@@ -33,13 +33,14 @@ const MyGeneration = () => {
     }
   };
 
-  const handleDownload = (image_url: string) => {
-    const link = document.createElement("a");
-    link.href = image_url.replace("/upload", "/upload/fl_attachment");
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-  };
+ const handleDownload = (image_url: string) => {
+  const link = document.createElement("a");
+  link.href = image_url; 
+  link.download = "thumbnail.png"; // optional filename
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+};
 
   const handleDelete = async (id: string) => {
     try {
