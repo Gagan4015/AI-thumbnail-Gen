@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import userModel from "../models/User.js";
 import bcrypt from "bcrypt";
-import { error } from "node:console";
 
 // Controller for user Registration
 export const registerUser = async (req: Request, res: Response) => {
