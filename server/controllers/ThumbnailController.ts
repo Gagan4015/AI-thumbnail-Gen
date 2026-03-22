@@ -131,7 +131,7 @@ Style: ${stylePrompts[style as keyof typeof stylePrompts]}
       `;
     } else {
       svgText = `
-        <text x="50%" y="85%" font-size="25px" font-weight="900" fill="white"
+        <text x="50%" y="85%" font-size="70" font-weight="900" fill="white"
           stroke="black" stroke-width="6" text-anchor="middle"
           font-family="Arial, sans-serif">
           ${title}
