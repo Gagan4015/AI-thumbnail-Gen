@@ -33,25 +33,13 @@ const MyGeneration = () => {
     }
   };
 
- const handleDownload = async (image_url: string) => {
-  try {
-    const response = await fetch(image_url);
-    const blob = await response.blob();
-
-    const url = window.URL.createObjectURL(blob);
-
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "thumbnail.png";
-
-    document.body.appendChild(link);
-    link.click();
-
-    link.remove();
-    window.URL.revokeObjectURL(url);
-  } catch (error) {
-    console.error("Download failed", error);
-  }
+ const handleDownload = (image_url: string) => {
+  const link = document.createElement("a");
+  link.href = image_url; 
+  link.download = "thumbnail.png"; 
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
 };
 
   const handleDelete = async (id: string) => {
